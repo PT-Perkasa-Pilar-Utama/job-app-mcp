@@ -7,13 +7,10 @@ const EnvSchema = z.object({
     .max(65535)
     .default(4323),
   HOST: z.string().nonempty().default("localhost"),
-  DATABASE_URL: z
+  JOB_APP_API_URL: z
     .string()
-    .nonempty({ message: "DATABASE_URL cannot be empty" }),
-
-  JWT_SECRET: z
-    .string()
-    .min(32, { message: "JWT_SECRET must be at least 32 characters" }),
+    .url({ message: "JOB_APP_API_URL must be a valid URL" })
+    .nonempty({ message: "JOB_APP_API_URL cannot be empty" }),
 
   ALLOWED_ORIGINS: z
     .string()
