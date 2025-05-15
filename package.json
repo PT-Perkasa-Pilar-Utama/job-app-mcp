@@ -1,0 +1,23 @@
+{
+  "name": "job-app-mcp",
+  "description": "Simple mcp server to be used for MCP demo.",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.11.2",
+    "fetch-to-node": "^2.1.0",
+    "hono": "^4.7.9",
+    "zod": "^3.24.4"
+  }
+}
