@@ -1,21 +1,12 @@
 import type { ServerOptions } from "@modelcontextprotocol/sdk/server/index.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { Implementation } from "@modelcontextprotocol/sdk/types.js";
-import type { z } from "zod";
-import type {
-  McpPrompt,
-  McpRegistry,
-  McpResource,
-  McpTool,
-} from "./mcp.primitive";
+import { PROMPT_LIST } from "./prompts";
+import { RESOURCE_LIST } from "./resources";
+import { TOOL_LIST } from "./tools";
 
 export class McpServerFactory {
   private server: McpServer;
-  private registry: McpRegistry = {
-    tools: [],
-    resources: [],
-    prompts: [],
-  };
 
   constructor(serverInfo?: Implementation, options?: ServerOptions) {
     this.server = new McpServer(
@@ -27,53 +18,26 @@ export class McpServerFactory {
       { capabilities: { logging: {} }, ...options }
     );
 
-    this.registerBinding();
+    this.registerAll();
   }
 
   /**
-   * Create a new instance of mcp server from the factory
-   * @returns A new instance of mcp server
+   * Get the configured instance of mcp server from the factory.
+   * @returns The instance of mcp server.
    */
-  public create(): McpServer {
-    this.registerAll();
+  public getServer(): McpServer {
     return this.server;
   }
 
   /**
-   * Register all primitives from the registry to the server
+   * Register all primitives and binding
    */
   private registerAll() {
+    this.registerBinding();
     this.registerAllTools();
+
     this.registerAllResources();
     this.registerAllPrompts();
-  }
-
-  /**
-   * Register a tool to the registry
-   */
-  public addTool<TSchema extends Record<string, z.ZodType<any>>>(
-    tool: McpTool<TSchema>
-  ): McpServerFactory {
-    this.registry.tools.push(tool);
-    return this;
-  }
-
-  /**
-   * Register a resource to the registry
-   */
-  public addResource(resource: McpResource): McpServerFactory {
-    this.registry.resources.push(resource);
-    return this;
-  }
-
-  /**
-   * Register a prompt to the registry
-   */
-  public addPrompt<TSchema extends Record<string, z.ZodType<any>>>(
-    prompt: McpPrompt<TSchema>
-  ): McpServerFactory {
-    this.registry.prompts.push(prompt);
-    return this;
   }
 
   /**
@@ -84,19 +48,19 @@ export class McpServerFactory {
   }
 
   /**
-   * Register all tools from the registry to the server
+   * Register all tools from the tool list
    */
   private registerAllTools() {
-    for (const tool of this.registry.tools) {
+    for (const tool of TOOL_LIST) {
       this.server.tool(tool.name, tool.description, tool.schema, tool.handler);
     }
   }
 
   /**
-   * Register all resources from the registry to the server
+   * Register all resources from the resource list
    */
   private registerAllResources() {
-    for (const resource of this.registry.resources) {
+    for (const resource of RESOURCE_LIST) {
       this.server.resource(
         resource.name,
         resource.uri,
@@ -107,10 +71,10 @@ export class McpServerFactory {
   }
 
   /**
-   * Register all prompts from the registry to the server
+   * Register all prompts from prompt list
    */
   private registerAllPrompts() {
-    for (const prompt of this.registry.prompts) {
+    for (const prompt of PROMPT_LIST) {
       this.server.prompt(
         prompt.name,
         prompt.description,
@@ -120,3 +84,6 @@ export class McpServerFactory {
     }
   }
 }
+
+const factory = new McpServerFactory();
+export { factory };

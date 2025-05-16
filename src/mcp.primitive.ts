@@ -52,9 +52,3 @@ export interface McpPrompt<TSchema extends Record<string, z.ZodType<any>> = any>
   schema: TSchema;
   handler: (params: z.infer<z.ZodObject<TSchema>>) => Promise<GetPromptResult>;
 }
-
-export interface McpRegistry {
-  tools: Array<McpTool<any>>;
-  resources: Array<McpResource>;
-  prompts: Array<McpPrompt<any>>;
-}
