@@ -9,7 +9,10 @@
     "start": "bun run src/index.ts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "diff": "^8.0.1",
+    "minimatch": "^10.0.1",
+    "zod-to-json-schema": "^3.24.5"
   },
   "peerDependencies": {
     "typescript": "^5"
