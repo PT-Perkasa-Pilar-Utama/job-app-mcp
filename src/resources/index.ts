@@ -1,4 +1,5 @@
 // List of resources
-import { greetingResource } from "./greeting";
+import { jobDetailsResource } from "./job-details";
+import { listAvailableJobsResource } from "./list-available-jobs";
 
-export const RESOURCE_LIST = [greetingResource];
+export const RESOURCE_LIST = [listAvailableJobsResource, jobDetailsResource];

@@ -52,7 +52,7 @@ export class McpServerFactory {
    */
   private registerAllTools() {
     for (const tool of TOOL_LIST) {
-      this.server.tool(tool.name, tool.description, tool.schema, tool.handler);
+      tool.register(this.server);
     }
   }
 
@@ -61,12 +61,7 @@ export class McpServerFactory {
    */
   private registerAllResources() {
     for (const resource of RESOURCE_LIST) {
-      this.server.resource(
-        resource.name,
-        resource.uri,
-        resource.options,
-        resource.handler
-      );
+      resource.register(this.server);
     }
   }
 
@@ -75,12 +70,7 @@ export class McpServerFactory {
    */
   private registerAllPrompts() {
     for (const prompt of PROMPT_LIST) {
-      this.server.prompt(
-        prompt.name,
-        prompt.description,
-        prompt.schema,
-        prompt.handler
-      );
+      prompt.register(this.server);
     }
   }
 }

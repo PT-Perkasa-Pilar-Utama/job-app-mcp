@@ -1,4 +1,4 @@
 // List of tools
-import { notificationTool } from "./notification";
+import { loginTool } from "./login";
 
-export const TOOL_LIST = [notificationTool];
+export const TOOL_LIST = [loginTool];
