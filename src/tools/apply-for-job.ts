@@ -53,7 +53,10 @@ export const applyForJobTool: McpPrimitive = {
         } catch (error: any) {
           return {
             content: [
-              { type: "text", text: `Error logging in: ${error.message}` },
+              {
+                type: "text",
+                text: `Error applying the job: ${error.message}`,
+              },
             ],
             isError: true,
           };
