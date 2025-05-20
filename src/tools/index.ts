@@ -6,11 +6,17 @@ import {
   updateJobApplicationStatus,
 } from "./admin-crud-apps";
 import { createJob, deleteJob, updateJob } from "./admin-crud-jobs";
-import { health, index, login } from "./general-public-tool";
+import {
+  deleteUser,
+  getAllUsers,
+  getDetailUser,
+  updateUser,
+} from "./admin-crud-users";
+import { health, index, login, register } from "./general-public-tool";
 import {
   applyJob,
-  getAppliedJob,
-  updateJobApplication,
+  getSelfDetailApplication,
+  updateSelfJobApplication,
 } from "./user-crud-apps";
 
 const ADMIN_TOOL_LIST = [
@@ -21,11 +27,19 @@ const ADMIN_TOOL_LIST = [
   getDetailJobAplication,
   deleteJobApplication,
   updateJobApplicationStatus,
+  getAllUsers,
+  getDetailUser,
+  updateUser,
+  deleteUser,
 ];
 
-const USER_TOOL_LIST = [applyJob, getAppliedJob, updateJobApplication];
+const USER_TOOL_LIST = [
+  applyJob,
+  getSelfDetailApplication,
+  updateSelfJobApplication,
+];
 
-const PUBLIC_TOOL_LIST = [login, index, health];
+const PUBLIC_TOOL_LIST = [register, login, index, health];
 
 export const TOOL_LIST = [
   ...PUBLIC_TOOL_LIST,

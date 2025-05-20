@@ -77,10 +77,10 @@ const readSchemma = z.object({
   applicationId,
   userToken,
 });
-export const getAppliedJob: McpPrimitive = {
+export const getSelfDetailApplication: McpPrimitive = {
   register(server) {
     server.tool(
-      "user-get-defail-job-application",
+      "user-get-detail-job-application",
       "User get details about their application specified by the id",
       readSchemma.shape,
       async ({ applicationId, userToken }): Promise<CallToolResult> => {
@@ -119,7 +119,7 @@ const updateSchema = optionalSchema.extend({
   applicationId,
   userToken,
 });
-export const updateJobApplication: McpPrimitive = {
+export const updateSelfJobApplication: McpPrimitive = {
   register(server) {
     server.tool(
       "user-edit-job-application",
