@@ -5,9 +5,9 @@ import type { McpPrimitive } from "../mcp.primitive";
 import { fetchFromJobApp } from "../utils";
 
 const mainSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-  name: z.string().min(2),
+  email: z.string().email().describe("User's email"),
+  password: z.string().min(6).describe("User's password"),
+  name: z.string().min(2).describe("User's name"),
 });
 
 const optionalSchema = mainSchema.partial();

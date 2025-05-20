@@ -18,6 +18,7 @@ import {
   getSelfDetailApplication,
   updateSelfJobApplication,
 } from "./user-crud-apps";
+import { getSelfDetailUser, updateSelfUserDetails } from "./user-crud-users";
 
 const ADMIN_TOOL_LIST = [
   createJob,
@@ -37,6 +38,8 @@ const USER_TOOL_LIST = [
   applyJob,
   getSelfDetailApplication,
   updateSelfJobApplication,
+  getSelfDetailUser,
+  updateSelfUserDetails,
 ];
 
 const PUBLIC_TOOL_LIST = [register, login, index, health];
