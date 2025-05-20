@@ -27,7 +27,7 @@ const schema = {
 export const applyForJobTool: McpPrimitive = {
   register(server) {
     server.tool(
-      "apply-for-job",
+      "user-apply-for-job",
       "User apply for available job specified in jobId",
       schema,
       async ({

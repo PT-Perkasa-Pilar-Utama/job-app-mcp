@@ -5,7 +5,7 @@ import { fetchFromJobApp } from "../utils";
 export const jobDetailsResource: McpPrimitive = {
   register(server) {
     server.resource(
-      "get-job-details",
+      "public-get-job-details",
       new ResourceTemplate("jobapp://jobs/{jobId}", { list: undefined }),
       async (uri, { jobId }) => {
         try {

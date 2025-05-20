@@ -12,7 +12,7 @@ const schema = {
 export const loginTool: McpPrimitive = {
   register(server) {
     server.tool(
-      "login",
+      "public-login",
       "Login to JobApp Rest API for admin and user",
       schema,
       async ({ email, password }): Promise<CallToolResult> => {
