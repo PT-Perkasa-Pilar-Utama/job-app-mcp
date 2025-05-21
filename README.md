@@ -28,3 +28,19 @@ Here's the sample on ubuntu, you can adjust the path. Also we're using Bunjs.
   }
 }
 ```
+
+Windows:
+
+```json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "bun",
+      "args": [
+        "--env-file=C:\\Users\\username\\Downloads\\mcp\\job-app-mcp\\.env",
+        "C:\\Users\\username\\Downloads\\mcp\\job-app-mcp\\src\\index.local.ts"
+      ]
+    }
+  }
+}
+```
