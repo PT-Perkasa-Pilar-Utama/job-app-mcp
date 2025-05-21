@@ -141,3 +141,70 @@ export const health: McpPrimitive = {
     );
   },
 };
+
+export const getListAvailableJobs: McpPrimitive = {
+  register(server) {
+    server.tool(
+      "public-list-available-jobs",
+      "Get all available job that can be applied",
+      async (): Promise<CallToolResult> => {
+        try {
+          const result = await fetchFromJobApp("/api/jobs", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+
+          return {
+            content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+          };
+        } catch (error: any) {
+          return {
+            content: [
+              {
+                type: "text",
+                text: `Error getting all the available jobs: ${error.message}`,
+              },
+            ],
+            isError: true,
+          };
+        }
+      }
+    );
+  },
+};
+
+const readDetailSchema = z.object({
+  jobId: z.string().nonempty().describe("The job id"),
+});
+
+export const getJobDetails: McpPrimitive = {
+  register(server) {
+    server.tool(
+      "public-get-job-details",
+      "Get individual job details specified by the id",
+      readDetailSchema.shape,
+      async ({ jobId }): Promise<CallToolResult> => {
+        try {
+          const result = await fetchFromJobApp(`/api/jobs/${jobId}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+          });
+
+          return {
+            content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+          };
+        } catch (error: any) {
+          return {
+            content: [
+              {
+                type: "text",
+                text: `Error in getting the job details: ${error.message}`,
+              },
+            ],
+            isError: true,
+          };
+        }
+      }
+    );
+  },
+};
