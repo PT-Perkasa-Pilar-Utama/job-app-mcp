@@ -11,19 +11,6 @@ const EnvSchema = z.object({
     .string()
     .url({ message: "JOB_APP_API_URL must be a valid URL" })
     .nonempty({ message: "JOB_APP_API_URL cannot be empty" }),
-
-  ALLOWED_ORIGINS: z
-    .string()
-    .default("")
-    .transform((origins) =>
-      origins
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean)
-    )
-    .pipe(
-      z.array(z.string().url({ message: "Each origin must be a valid URL" }))
-    ),
 });
 
 export type Env = z.infer<typeof EnvSchema>;
