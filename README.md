@@ -34,7 +34,7 @@ Windows:
 ```json
 {
   "mcpServers": {
-    "filesystem": {
+    "job-app": {
       "command": "bun",
       "args": [
         "--env-file=C:\\Users\\username\\Downloads\\mcp\\job-app-mcp\\.env",
